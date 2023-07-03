@@ -22,7 +22,7 @@ def homepage():
         role = request.form['role']
         print(first_name,last_name, email, date, role)
 
-        insert_query = "INSERT INTO ENTRY (first_name, last_name, email, date, role) VALUES (%s, %s, %s, %s, %s)"
+        insert_query = "INSERT INTO ENTRY (first_name, last_name, email, date, role) VALUES (%s, %s, %s, %s, %s)" #write into databse
         values = (first_name, last_name, email, date, role)
         cursor.execute(insert_query, values)
         connection.commit()
