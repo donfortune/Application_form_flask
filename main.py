@@ -1,7 +1,16 @@
 from flask import Flask,render_template,request
+import pymysql
 
 
 app = Flask(__name__)
+
+connection = pymysql.connect(
+    host='localhost',
+    user='root',
+    password='xxxxxxxxxx',
+    database='form'
+)
+cursor = connection.cursor()
 
 @app.route("/", methods=['GET', 'POST'])    #homepage
 def homepage():
@@ -12,6 +21,12 @@ def homepage():
         date = request.form['date']
         role = request.form['role']
         print(first_name,last_name, email, date, role)
+
+        insert_query = "INSERT INTO ENTRY (first_name, last_name, email, date, role) VALUES (%s, %s, %s, %s, %s)"
+        values = (first_name, last_name, email, date, role)
+        cursor.execute(insert_query, values)
+        connection.commit()
+    
 
         
 
