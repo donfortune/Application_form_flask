@@ -42,7 +42,14 @@
                         <label for="student">Student</label>
                     </div>
                 </div>
-                <button class="btn btn-secondary mb-4" type="submit">Submit</button>
+                <button class="btn btn-secondary  mb-4"  name="but" submit">Submit</button>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <div>
+                    Your Application was submitted successfully
+                </div>
+                {% endif %}
+                {% endwith %}
             </form>
         </div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

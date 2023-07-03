@@ -1,13 +1,15 @@
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request,flash
 import pymysql
 
 
+
 app = Flask(__name__)
+app.secret_key = "xxxxxxxxxx"
 
 connection = pymysql.connect(
     host='localhost',
     user='root',
-    password='xxxxxxxxxx',
+    password='xxxxxxx',
     database='form'
 )
 cursor = connection.cursor()
@@ -26,11 +28,14 @@ def homepage():
         values = (first_name, last_name, email, date, role)
         cursor.execute(insert_query, values)
         connection.commit()
+        flash('Your Application was submitted successfully', 'success')
+
     
 
         
 
     return render_template('index.html')
+
 
 
 app.run(debug=True, port=5001)
