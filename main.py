@@ -14,7 +14,7 @@ connection = pymysql.connect(
 )
 cursor = connection.cursor()
 
-@app.route("/", methods=['GET', 'POST'])    #homepage
+@app.route("/", methods=['GET', 'POST'])    
 def homepage():
     if request.method == 'POST':
         first_name = request.form['first_name']
